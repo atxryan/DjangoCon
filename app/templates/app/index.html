@@ -10,11 +10,9 @@
 <p>Did you know Python applications can be hosted on Microsoft Azure, too? Yes, that means your Django apps (and Flask, Bottle, and more!). Microsoft Azure is about much more than just Windows and .NET.</p>
 <p>Microsoft Azure offers a wide array of creation, deployment and management capabilities through the Azure Management Portal, <a href="https://azure.microsoft.com/en-us/documentation/articles/xplat-cli/">x-plat CLI</a> (cross-platform, command-line interface), or PowerShell cmdlets.</p>
 
-<strong>Note: This challenge is not yet live. Check back very soon, but if you want to get started before signing up, go to <a href="https://tryappservice.azure.com/">Try App Service</a>, where you can immediately create a short-lived starter web app. No credit card required; no commitments.</strong>
-
 <h2>The Challenge</h2>
 <ul>
-    <li>Clone this GitHub repo.</li>
+    <li>Clone a Django GitHub repo or use one of your own existing Django apps.</li>
     <li>Run the app locally to confirm its working.</li>
     <li>Modify with your own information.</li>
     <li>Deploy the web app to Azure</li>
@@ -75,26 +73,28 @@
 <p>You now have an empty web app running on Azure. Let's put something in it!</p>
 
 <h3>Clone the DjangoCon Challenge repo and run locally</h3>
-<p>Our goal here is to create a very simple website. You have a few options here, but the simplest one is to simply clone the GitHub repo:</p>
+<p>Our goal here is to create a very simple website. You have a few options here, but the simplest one is to simply fork the GitHub and clone locally:</p>
+<p>Fork this repo: <a href="https://github.com/timmyreilly/YourDjangoSiteResume">https://github.com/timmyreilly/YourDjangoSiteResume</a></p>
 
-<pre><code>git clone [URL coming soon]
-cd [repo name] </code></pre>
+<pre><code>git clone https://github.com/&lt;your_user_name&gt;/YourDjangoSiteResume.git DjangoConChallenge
+cd DjangoConChallenge </code></pre>
 
 <h3>Let's take a look at the app structure</h3>
 
 <pre><code>- app
     - static/app
     - templates/app
-        - index.html
-        - layout.html
+        - base.html
 - djangocon
     - __init__.py
     - local_settings.py.SAMPLE
     - settings.py
     - urls.py
     - wsgi.py
+- .deployment
 - .gitignore
 - db.sqlite3
+- deploy.cmd
 - manage.py
 - <b>ptvs_virtualenv_proxy.py</b>
 - readme.md
@@ -107,7 +107,7 @@ cd [repo name] </code></pre>
 <p><strong>requirements.txt</strong> - External packages needed by this application. The deployment script will pip install the packages listed in this file.</p>
 <p><strong>ptvs_virtualenv_proxy.py</strong> - IIS proxy for virtual environments and PTVS remote debugging support.</p>
 <p><strong>Web.2.7.config</strong> and <strong>web.3.4.config</strong> - These are IIS configuration files used by Azure. The deployment script will use the appropriate web.x.y.config and copy it as web.config.</p>
-
+<p><strong>.deployment</strong> and <strong>deploy.cmd</strong> - These aren't actually needed here because we're not doing anything that requires a custom deployment script. You can browse deploy.cmd to see how the Python app is determined, virtual environment setup, and packages installed in your Azure Web App.</p>
 
 <h3>Create virtual environment</h3>
 <p>Now that you've got the code on your local machine, let's setup a virtual environment and run the local development server. Choose instructions below to set up via the command line (Windows, Mac, or Linux) or in Visual Studio (Windows).</p>
@@ -165,10 +165,13 @@ cd [repo name] </code></pre>
 
 
 <h3>Modify with your own information</h3>
-<strong>Note: These instructions are not yet live. Check back very soon for full instructions</strong>
+
+<p>Open <strong>/app/views.py</strong> and modify the <strong>YOUR_INFO</strong> dict with your information.</p>
+<img src="/static/app/images/code_modify_your_info.png" class="wide_screenshot" />
+
 <p>After you've tested your changes, commit them to the Git repository:</p>
 <pre><code>git add .
-git commit -m "your commit message"</code></pre>
+git commit -m "Add my contact info"</code></pre>
 
 
 <h3>Deploy the Web App to Azure</h3>
@@ -195,6 +198,10 @@ git push azure master</code></pre>
     You can find additional resources and infomation about Azure deployments <a href="/additional_resources">here</a>.
 
 
+<h2> If you would like some help creating your site or are looking for ideas come by the Microsoft Booth or shoot us a tweet: </h2>
+
+<p><a href="https://twitter.com/atxryan">@atxryan</a></p>
+<p><a href="http://twitter.com/timmyreilly">@timmyreilly</a></p>
 
     {% endblock %}
 

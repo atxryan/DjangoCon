@@ -68,6 +68,9 @@ hr {
 .wide_screenshot:hover, .narrow_screenshot:hover {
     width: auto;
 }
+.instructions_header {
+    cursor: pointer;
+}
 .instructions {
     display: none;
 }
